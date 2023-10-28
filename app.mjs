@@ -1,3 +1,4 @@
+import './config.mjs'   // make sure this is at the top
 import express from 'express';
 const app = express();
 
@@ -17,6 +18,6 @@ app.get('/', (req, res) => {
   res.send('TODO: add / modify routes')
 }); 
 
-app.listen(process.env.PORT || 3000);  
+app.listen(process.env.PORT || 3000);  // to listen based on a configurable PORT number
 
 
