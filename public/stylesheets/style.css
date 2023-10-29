@@ -1,5 +1,29 @@
 body {
 	font-family: 'Fira Sans Extra Condensed', sans-serif;
-	background-color: lightblue;
+	background-color: rgb(204, 252, 247);
 }
 
+form {
+	margin: 0 auto;
+	padding: 20px;
+	text-align: center;
+} 
+
+  table {
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid black;
+  }
+  th, td {
+	border: 1px solid black;
+	padding: 8px;
+	text-align: left;
+  }
+  th {
+	background-color: #f2f2f2; /* Optional: add a background color to header cells */
+  }
+
+  .content-container {
+    margin: 0 auto;  /* Center the container on the page */
+    text-align: left; /* Ensure text alignment is left within the container */
+  }
