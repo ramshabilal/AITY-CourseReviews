@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Reviews</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    {{!-- <div class="content-container"> --}}
+    <h1>All Reviews</h1>
+
+<!---<table style="width:100%;"></table> -->
+
+    <table style="width:100%;">
+        <thead>
+            <tr>
+                <th>Course Number</th>
+                <th>Course Name</th>
+                <th>Semester</th>
+                <th>Year</th>
+                <th>Professor</th>
+                <th>Review</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            {{#each reviews}}
+            <tr>
+                <td>{{this.courseNumber}}</td>
+                <td>{{this.courseName}}</td>
+                <td>{{this.semester}}</td>
+                <td>{{this.year}}</td>
+                <td>{{this.professor}}</td>
+                <td>{{this.review}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</body>
+</html>
+``
