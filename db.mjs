@@ -3,12 +3,13 @@ import mongoose from 'mongoose'
 
 // my schema goes here!
 const reviewSchema = new mongoose.Schema({
-	courseNumber: String,
-	courseName: String,
-  semester: String,
-  year: Number,
-  professor: String,
-  review: String
+	courseNumber: {type: String, required: true},
+	courseName: {type: String, required: true},
+  semester: {type: String, required: true},
+  year: {type: Number, required: true},
+  professor: {type: String, required: true},
+  review: {type: String, required: true},
+  sessionId: {type: String}
 });
 
 const Review = mongoose.model('Review', reviewSchema);

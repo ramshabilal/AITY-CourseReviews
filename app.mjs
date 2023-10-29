@@ -1,8 +1,15 @@
 import './config.mjs';   // make sure this is at the top
 import mongoose from 'mongoose';
 import express from 'express';
+import session from 'express-session';
 
 const app = express();
+
+app.use(session({
+  secret: process.env.secret, // Add a secret key for session encryption
+  resave: false,
+  saveUninitialized: true
+}));
 
 import Review from './db.mjs';
 
@@ -17,6 +24,18 @@ app.set('view engine', 'hbs');
 
 // body parser (req.body)
 app.use(express.urlencoded({ extended: false }));
+
+// Placed before route handlers to ensure it runs on every request.
+app.use((req, res, next) => {
+  // Check if session.visitCount exists, if not, initialize it to 1
+  req.session.count = req.session.count ? req.session.count + 1 : 1;
+
+  // Make the visitCount available to all templates using res.locals
+  res.locals.count = req.session.count;
+
+  next();
+});
+
 
 app.get('/', async (req, res) => {
 
@@ -34,7 +53,7 @@ app.get('/', async (req, res) => {
   }
 
   // Check if year parameter exists and perform a numeric partial search using regex
-  if (year) {     //TO-DO: PARTIAL SEARCH FOR YEAR
+  if (year) {     //TO-DO: PARTIAL SEARCH FOR YEAR?
     const numericYear = parseInt(year, 10); // Convert year to a number
     if (!isNaN(numericYear)) {
         queryObject.year = numericYear;
@@ -62,11 +81,11 @@ app.get('/reviews/add', (req, res) => {
 app.post('/reviews/add', async (req, res) => {
   // Extract form data from req.body
   const { courseNumber, courseName, semester, year, professor, review } = req.body;
-
+  const sessionId = req.sessionID;
   try {
       // Create a new review in the database using the Review model
-      const numericYear = parseInt(year, 10); // Convert year to a number
-      await Review.create({ courseNumber, courseName, semester, numericYear, professor, review });
+      //const numericYear = parseInt(year, 10); // Convert year to a number
+      await Review.create({ courseNumber, courseName, semester, year, professor, review, sessionId});
 
       // Redirect back to the page that shows all reviews (e.g., '/')
       res.redirect('/');
@@ -75,6 +94,18 @@ app.post('/reviews/add', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
+
+app.get('/reviews/mine', async (req, res) => {
+  const sessionId = req.session.id; // Get the session ID
+  try {
+      const myReviews = await Review.find({ sessionId }); // Retrieve reviews for the current session
+      res.render('myReviews', { 'myReviews': myReviews });
+  } catch (err) {
+      console.error('Error retrieving user reviews:', err);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
 
 app.listen(process.env.PORT || 3000);  // to listen based on a configurable PORT number
 

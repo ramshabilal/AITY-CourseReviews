@@ -7,8 +7,9 @@
 </head>
 <body>
     <div class="content-container"> 
-    <h1>Add Review</h1>
+    <h2>ADD REVIEW</h2>
 
+<span class = "center-span" style="text-align:right">
    <form action="/reviews/add" method="POST">
             <label for="courseNumber">Course Number:</label>
             <input type="text" id="courseNumber" name="courseNumber" required><br><br>
@@ -21,15 +22,15 @@
                 <option value="Spring">Spring</option>
             </select><br><br>
             <label for="year">Year:</label>
-            <input type="text" id="year" name="year" required><br><br>
+            <input type="number" id="year" name="year" required><br><br>
             <label for="professor">Professor:</label>
             <input type="text" id="professor" name="professor" required><br><br>
             <label for="review">Review:</label>
             <textarea id="review" name="review" rows="2" cols="20" required></textarea><br><br>
-            <button type="submit">Submit Review</button>
+            <button type="submit">Submit</button>
         </form>
-
-        <a href="/">Back to All Reviews</a>
+</span>
+        <a href="/" style="text-decoration:none;padding:10px; background-color:rgb(216, 223, 226)">Back to All Reviews</a>
         
     </div>
 </body>

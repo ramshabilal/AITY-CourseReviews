@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Reviews</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div class="content-container">
+        <h2>MY REVIEWS</h2>
+
+        <table style="margin-bottom:20px;">
+            <!-- Table headers -->
+            <thead>
+                <tr>
+                    <th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Semester</th>
+                    <th>Year</th>
+                    <th>Professor</th>
+                    <th>Review</th>
+                </tr>
+            </thead>
+            <!-- Table body for user's reviews -->
+            <tbody>
+                {{#each myReviews}}
+                <tr>
+                    <td>{{this.courseNumber}}</td>
+                    <td>{{this.courseName}}</td>
+                    <td>{{this.semester}}</td>
+                    <td>{{this.year}}</td>
+                    <td>{{this.professor}}</td>
+                    <td>{{this.review}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <a href="/" style="text-decoration:none;padding:10px; background-color:rgb(216, 223, 226)">Back to All Reviews</a>
+    </div>
+</body>
+</html>
