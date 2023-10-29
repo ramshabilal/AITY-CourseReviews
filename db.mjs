@@ -1,5 +1,5 @@
-import './config.mjs' 
-import mongoose from 'mongoose'
+import './config.mjs';
+import mongoose from 'mongoose';
 
 // my schema goes here!
 const reviewSchema = new mongoose.Schema({
@@ -15,7 +15,7 @@ const reviewSchema = new mongoose.Schema({
 const Review = mongoose.model('Review', reviewSchema);
 // "register" it so that mongoose knows about it
 
-console.log(process.env.DSN)
+//console.log(process.env.DSN);
 mongoose.connect(process.env.DSN);
 
 /* .then(() => {

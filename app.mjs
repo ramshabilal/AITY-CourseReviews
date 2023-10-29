@@ -1,5 +1,4 @@
-import './config.mjs';   // make sure this is at the top
-import mongoose from 'mongoose';
+import './config.mjs'; // make sure this is at the top
 import express from 'express';
 import session from 'express-session';
 
@@ -27,10 +26,10 @@ app.use(express.urlencoded({ extended: false }));
 
 // Placed before route handlers to ensure it runs on every request.
 app.use((req, res, next) => {
-  // Check if session.visitCount exists, if not, initialize it to 1
+  // Check if session.count exists, if not, initialize it to 1
   req.session.count = req.session.count ? req.session.count + 1 : 1;
 
-  // Make the visitCount available to all templates using res.locals
+  // Make the count available to all templates using res.locals
   res.locals.count = req.session.count;
 
   next();
@@ -53,7 +52,7 @@ app.get('/', async (req, res) => {
   }
 
   // Check if year parameter exists and perform a numeric partial search using regex
-  if (year) {     //TO-DO: PARTIAL SEARCH FOR YEAR?
+  if (year) {
     const numericYear = parseInt(year, 10); // Convert year to a number
     if (!isNaN(numericYear)) {
         queryObject.year = numericYear;
@@ -107,7 +106,7 @@ app.get('/reviews/mine', async (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 3000);  // to listen based on a configurable PORT number
+app.listen(process.env.PORT || 3000); // to listen based on a configurable PORT number
 
 
 
