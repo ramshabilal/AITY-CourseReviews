@@ -8,6 +8,7 @@ An anonymous course review site for students to review and browse course feedbac
 - **Add new review**: Submit your own feedback anonymously.
 - **Filter reviews**: Search by semester, year, and professor.
 - **My reviews**: View and manage your own submitted reviews.
+- **Session management**: Track the number of page visits during your session.
 
 ## Technologies Used
 
