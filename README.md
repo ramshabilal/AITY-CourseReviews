@@ -29,7 +29,7 @@ An anonymous course review site for students to review and browse course feedbac
 2. Navigate to the project directory:
 
     ```bash
-    cd AITY-Three-Reviews
+    cd path/to/directory
     ```
     
 3. Install dependencies:
