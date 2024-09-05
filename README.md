@@ -2,7 +2,7 @@
 
 An anonymous course review site for students to review and browse course feedback.
 
-# [Click to view site](https://aity-course-reviews.vercel.app/)
+## [Click to view site](https://aity-course-reviews.vercel.app/)
 
 ## Features
 
