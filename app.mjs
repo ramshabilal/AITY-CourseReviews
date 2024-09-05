@@ -1,13 +1,17 @@
 import './config.mjs'; // make sure this is at the top
 import express from 'express';
 import session from 'express-session';
+import MongoStore from 'connect-mongo';
 
 const app = express();
+
+const mongoUrl = "mongodb+srv://ramshabilal:RsRRPoY9gZCVNjhi@cluster0.siam2zv.mongodb.net/hw04?retryWrites=true&w=majority&appName=Cluster0";
 
 app.use(session({
   secret: process.env.secret, // Add a secret key for session encryption
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl })
 }));
 
 import Review from './db.mjs';
@@ -18,6 +22,7 @@ import path from 'path';
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('views', path.join(__dirname, 'views'));
 // configure templating to hbs
 app.set('view engine', 'hbs');
 
